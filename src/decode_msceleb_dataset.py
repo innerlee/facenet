@@ -2,19 +2,19 @@
 https://www.microsoft.com/en-us/research/project/ms-celeb-1m-challenge-recognizing-one-million-celebrities-real-world/
 """
 # MIT License
-# 
+#
 # Copyright (c) 2016 David Sandberg
-# 
+#
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
 # in the Software without restriction, including without limitation the rights
 # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 # copies of the Software, and to permit persons to whom the Software is
 # furnished to do so, subject to the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be included in all
 # copies or substantial portions of the Software.
-# 
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -47,14 +47,14 @@ import facenet
 
 def main(args):
     output_dir = os.path.expanduser(args.output_dir)
-  
+
     if not os.path.exists(output_dir):
         os.mkdir(output_dir)
-  
+
     # Store some git revision info in a text file in the output directory
     src_path,_ = os.path.split(os.path.realpath(__file__))
     facenet.store_revision_info(src_path, output_dir, ' '.join(sys.argv))
-    
+
     i = 0
     for f in args.tsv_files:
         for line in f:
@@ -74,7 +74,7 @@ def main(args):
             cv2.imwrite(full_path, img) #pylint: disable=maybe-no-member
             print('%8d: %s' % (i, full_path))
             i += 1
-  
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
 
