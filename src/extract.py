@@ -52,9 +52,11 @@ def main(args):
     with tf.Graph().as_default():
 
         with tf.Session() as sess:
+            h5f = h5py.File('data.h5', 'w')
 
             # Get the paths for the corresponding images
             paths = get_paths(os.path.expanduser(args.face_dir))
+            h5f["names"] = paths
 
             # Load the model
             facenet.load_model(args.model)
@@ -82,7 +84,6 @@ def main(args):
                 feed_dict = { images_placeholder:images, phase_train_placeholder:False }
                 emb_array[start_index:end_index, :] = sess.run(embeddings, feed_dict=feed_dict)
 
-            h5f = h5py.File('data.h5', 'w')
             h5f["feature"] = emb_array
 
 
