@@ -57,7 +57,7 @@ def main(args):
             # Get the paths for the corresponding images
             paths = get_paths(os.path.expanduser(args.face_dir))
             print(paths)
-            h5f["names"] = [np.string_(p) for p in paths]
+            h5f["names"] = [p.encode('utf-8') for p in paths]
 
             # Load the model
             facenet.load_model(args.model)
